@@ -1,0 +1,7 @@
+{
+  "name": "Oscars Showdown",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
