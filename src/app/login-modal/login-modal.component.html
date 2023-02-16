@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Login/Sign up</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button (click)="confirm()">Confirm</ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="cancel()"></firebase-ui>
+</ion-content>

@@ -1,17 +1,28 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Pools (header)
     </ion-title>
+    <ion-button *ngIf="!currentUser" slot="end" (click)="logout()" fill="clear">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Pools (content)</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+  <div *ngIf="!currentUser" class="welcome">
+    <h1>Welcome!</h1>
+    <p>To create or join a pool, please</p>
+    <p class="welcome-message">
+      <ion-button fill="outline" (click)="launchLogin()">login</ion-button> or <ion-button fill="outline" (click)="launchLogin()">sign up</ion-button>
+    </p>
+  </div>
+  <div *ngIf="currentUser">
+    <app-pool *ngFor="let pool of pools | async" [pool]="pool"></app-pool>
+  </div>
 </ion-content>

@@ -1,0 +1,50 @@
+<ion-card style="max-width: 700px;">
+  <ion-card-header>
+    <ion-card-title>{{pool.name}}</ion-card-title>
+    <ion-card-subtitle>{{pool.users.length}} member<span [hidden]="pool.users.length == 1">s</span></ion-card-subtitle>
+  </ion-card-header>
+  
+  <ion-card-content>
+    <ion-list *ngIf="currentUser">
+      <ng-container *ngFor="let user of poolUsers">
+        <ion-item>
+          <!-- <app-picks-status slot="start" [user]="(user | async)"></app-picks-status> -->
+          <ion-avatar slot="start">
+            <img alt="Silhouette of a person's head" [src]="user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"  />
+          </ion-avatar>
+          <ion-label style="display: flex; align-items: center; gap: 10px;">
+            {{user.displayName}}
+            <ion-icon *ngIf="user.uid == pool.creator" name="star"></ion-icon>
+          </ion-label>
+          <ion-button *ngIf="pool.creator == currentUser.uid 
+              && user.uid !== currentUser.uid 
+              && appService.isBeforeCeremony"
+              slot="end"
+              fill="clear"
+              color="danger"
+              (click)="removeFromPool(user, 'Remove user from pool?')">
+              <ion-icon name="close-circle"></ion-icon>
+          </ion-button>
+          <ion-chip *ngIf="appService.isAfterCeremonyStart" color="secondary">{{user.points}}</ion-chip>
+        </ion-item>
+        <ion-progress-bar *ngIf="appService.isAfterCeremonyStart" 
+          [value]="getProgress(user)" 
+          [color]="user.gotLastAwardCorrect ? 'success' : 'danger'">
+        </ion-progress-bar>
+      </ng-container>
+    </ion-list>
+    <div style="display: flex; justify-content: end; margin-top: 15px;">
+      <ion-button *ngIf="appService.isBeforeCeremony"(click)="inviteOthers()" fill="outline">
+          <ion-icon name="share-social" slot="start"></ion-icon>
+          Invite Others 
+      </ion-button>
+      <ion-button *ngIf="appService.isBeforeCeremony"(click)="leavePool()" fill="clear">
+          Leave Pool
+      </ion-button>
+      <ion-button *ngIf="appService.isAfterCeremonyStart" fill="outline">
+          <ion-icon name="stats-chart" slot="start"></ion-icon>
+          Stats
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>
