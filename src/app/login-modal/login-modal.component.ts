@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ModalController } from '@ionic/angular';
 import { FirebaseUISignInSuccessWithAuthResult } from 'firebaseui-angular';
-import { Subscription } from 'rxjs';
+import { lastValueFrom, Subscription } from 'rxjs';
 import { OscarUser } from '../models';
 
 @Component({
@@ -10,30 +10,31 @@ import { OscarUser } from '../models';
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.scss'],
 })
-export class LoginModalComponent implements OnInit, OnDestroy {
+export class LoginModalComponent implements OnInit {
   userSub?: Subscription;
 
   constructor(private modalCtrl: ModalController, private afs: AngularFirestore) { }
 
   ngOnInit() {}
 
-  ngOnDestroy() {
-    this.userSub?.unsubscribe();
-  }
+  async successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
+    console.log('sucess')
 
-  successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
-    const { displayName, photoURL, uid } = signInSuccessData.authResult.user
-    const userRef = this.afs.doc<OscarUser>(`users/${uid}`);
 
-    this.userSub = userRef.valueChanges().subscribe(async user => {
-      if(!user) {
-        await userRef.set({ uid, displayName, photoURL, points: 0, picks: {}, gotLastAwardCorrect: true });
-      } else {
-        await userRef.update({photoURL})
-      }
+    // const { displayName, photoURL, uid } = signInSuccessData.authResult.user
+    // const userRef = this.afs.doc<OscarUser>(`users/${uid}`);
 
-      // this.modalCtrl.dismiss(true)   
-    });
+
+    // const user$ = userRef.valueChanges();
+    // const user = await lastValueFrom(user$);
+
+    // if(!user) {
+    //   await userRef.set({ uid, displayName, photoURL, points: 0, picks: {}, gotLastAwardCorrect: true });
+    // } else {
+    //   await userRef.update({photoURL})
+    // }
+
+      this.modalCtrl.dismiss(true) 
   }
 
   cancel() {

@@ -7,8 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { PoolComponent } from '../pool/pool.component';
-import { AppModule } from '../app.module';
-import { TabsPageModule } from '../tabs/tabs.module';
+import { HelpersModule } from '../helpers/helpers.module';
 
 @NgModule({
   imports: [
@@ -17,7 +16,7 @@ import { TabsPageModule } from '../tabs/tabs.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    // TabsPageModule
+    HelpersModule
   ],
   declarations: [Tab1Page, PoolComponent]
 })

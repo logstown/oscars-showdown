@@ -1,8 +1,8 @@
-import { Component, Input, isDevMode, OnInit } from '@angular/core';
+import { Component, Input, isDevMode, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, IonModal, ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
-import { first, Observable } from 'rxjs';
+import { first, Observable, Subscription } from 'rxjs';
 import { AppService } from '../app.service';
 import { AwardCategory, OscarUser, Pool } from '../models';
 
@@ -14,8 +14,12 @@ import { AwardCategory, OscarUser, Pool } from '../models';
 export class PoolComponent implements OnInit {
   @Input() pool: Pool;
 
+  @ViewChild(IonModal) modal: IonModal;
+
   poolUsers: OscarUser[];
-  currentUser: OscarUser
+  currentUser: OscarUser;
+  awardPicks: any[];
+  awardsSub: Subscription;
   
   constructor(private afs: AngularFirestore, 
     public appService: AppService, 
@@ -81,7 +85,7 @@ export class PoolComponent implements OnInit {
   }
 
   async inviteOthers() {
-    const url = isDevMode() ? 'https://localhost:8100' : 'https://oscars.firebaseapp.com';
+    const url = isDevMode() ? 'http://localhost:8100/tabs/tab1' : 'http://oscars.firebaseapp.com';
     const linkToCopy = `${url}?poolId=${this.pool.id}`;
 
     const alert = await this.alertController.create({
@@ -108,14 +112,14 @@ export class PoolComponent implements OnInit {
             const toast = await this.toastController.create({
               message: 'Link Copied',
               duration: 3000,
-              position: 'bottom'
+              position: 'top'
             });
         
             await toast.present();
           },
         },
         {
-          text: 'Cancel',
+          text: 'Close',
           role: 'cancel'
         }
       ],
@@ -124,27 +128,38 @@ export class PoolComponent implements OnInit {
     await alert.present();
   }
 
+  compileStats() {
+    this.awardsSub = this.afs.collection<AwardCategory>('awards', ref => ref.orderBy('sequence'))
+      .valueChanges().subscribe(awards => {
+        this.awardPicks = _.map(awards, (award: any) => {
+          award.nominees = _.chain(award.nominees)
+            .map((nominee: any) => {
+              nominee.users = _.filter(this.poolUsers, user => user.picks[award.id] && user.picks[award.id].id == nominee.id);
+              return nominee;
+            })
+            .filter(nominee => nominee.users.length || nominee.id === award.winner)
+            .value();
+
+          return award;
+        });
+        console.log(this.awardPicks)
+
+        // this.darkHorseWinner = this._getDarkHorse(awards);
+        // this._getFanboys();
+      });
+  }
+
+  closeStats() {
+    this.modal.dismiss();
+  }
+
+  unsub() {
+    console.log('unsub')
+    this.awardsSub.unsubscribe();
+  }
+
   private async _compileScores(winners: AwardCategory[]) {
     const latestAward: AwardCategory = _.maxBy(winners, winner => winner.winnerStamp.toMillis());
-    
-    if(latestAward) {
-      const winningNominee = _.find(latestAward.nominees, {id: latestAward.winner});
-      const winnerString = winningNominee.nominee ? winningNominee.nominee : winningNominee.film;
-
-      const toast = await this.toastController.create({
-        message: `${winnerString} has won for ${latestAward.award}`,
-        position: 'bottom',
-        icon: 'trophy',
-        buttons: [
-          {
-            text: 'Ok',
-            role: 'info'
-          }
-        ]
-      });
-  
-      await toast.present();
-    }
 
     this.poolUsers = _.chain(this.poolUsers)
       .map((user: OscarUser) => {

@@ -9,7 +9,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable()
 export class AppService {
-    private _awardsSubject: ReplaySubject<AwardCategory[]> = new ReplaySubject();
     private _winnersSubject: ReplaySubject<AwardCategory[]> = new ReplaySubject();
     private _currentTime: moment.Moment =  moment();
     private _ceremonyStart: moment.Moment = moment.utc({years: 2023, months: 2, days: 13, hours: 0});
@@ -21,8 +20,8 @@ export class AppService {
     constructor(private afs: AngularFirestore) {
         this.afs.collection<AwardCategory>('awards', ref => ref.orderBy('sequence')).valueChanges()
             .subscribe(awards => {
+                console.log('awards fired')
                 this._awardsLength = awards.length;
-                this._awardsSubject.next(awards);
                 this._totalPossiblePoints = _.reduce(awards, (sum, award) => sum + award.points, 0)
 
                 const winners = _.filter(awards, 'winner');
@@ -45,10 +44,6 @@ export class AppService {
 
     get timeUntilCeremony() {
         return this._currentTime.to(this._ceremonyStart);
-    }
-
-    get awards$() {
-        return this._awardsSubject;
     }
 
     get winners$() {
