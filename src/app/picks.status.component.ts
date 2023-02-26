@@ -5,10 +5,11 @@ import { AppService } from './app.service';
 @Component({
   selector: 'app-picks-status',
   template: `
-    <ng-container *ngIf="user">
-        <ion-icon *ngIf="!isFinishedPicks" color="danger" name="alert-circle"></ion-icon>
-        <ion-icon *ngIf="isFinishedPicks" color="success" name="checkmark"></ion-icon>
-    </ng-container>
+      <ng-container *ngIf="!isFinishedPicks">
+        <ion-icon *ngIf="!isDayOf" color="warning" name="alert-circle"></ion-icon>
+        <ion-icon *ngIf="isDayOf" color="danger" name="alert-circle"></ion-icon>
+      </ng-container>
+      <ion-icon *ngIf="isFinishedPicks" color="success" name="checkmark"></ion-icon>
   `
 })
 export class PicksStatusComponent {
@@ -16,7 +17,11 @@ export class PicksStatusComponent {
 
   constructor(private appService: AppService) {}
 
-  get isFinishedPicks(): boolean {
+  get isFinishedPicks(): boolean {    
     return Object.keys(this.user.picks).length == this.appService.awardsLength;
+  }
+
+  get isDayOf() {
+    return this.appService.isDayOf;
   }
 }

@@ -8,6 +8,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { PoolComponent } from '../pool/pool.component';
 import { HelpersModule } from '../helpers/helpers.module';
+import { PicksStatusComponent } from '../picks.status.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { HelpersModule } from '../helpers/helpers.module';
     Tab1PageRoutingModule,
     HelpersModule
   ],
+  exports: [],
   declarations: [Tab1Page, PoolComponent]
 })
 export class Tab1PageModule {}

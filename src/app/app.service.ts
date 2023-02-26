@@ -46,6 +46,10 @@ export class AppService {
         return this._currentTime.to(this._ceremonyStart);
     }
 
+    get isDayOf() {
+        return this._currentTime.isAfter(_.cloneDeep(this._ceremonyStart).subtract(1,'day'));
+    }
+
     get winners$() {
         return this._winnersSubject;
     }

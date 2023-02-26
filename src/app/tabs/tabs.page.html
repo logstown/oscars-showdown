@@ -9,6 +9,9 @@
     <ion-tab-button tab="ballot">
       <ion-icon name="reader"></ion-icon>
       <ion-label>Ballot</ion-label>
+      <ion-badge color="light">
+        <app-picks-status *ngIf="appService.isBeforeCeremony && currentUser" [user]="currentUser"></app-picks-status>
+      </ion-badge>
     </ion-tab-button>
   </ion-tab-bar>
 
