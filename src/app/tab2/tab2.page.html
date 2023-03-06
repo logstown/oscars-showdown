@@ -22,13 +22,13 @@
   <app-welcome *ngIf="!currentUser"></app-welcome>
   
   <ion-list *ngIf="currentUser" style="margin-top: 20px;">
-    <ion-item-group *ngFor="let award of awards$ | async; trackBy:identify">
-      <ion-item-divider [color]="getAwardColor(award)" mode="ios">
+    <ion-item-group *ngFor="let award of awards$ | async; trackBy:identify" style="margin-bottom: 50px;">
+      <ion-item-divider [color]="getAwardColor(award)" mode="ios" style="text-transform: uppercase;">
         <ion-label>{{award.award}}</ion-label>
         <ion-note color="dark" slot="end">{{award.points}} point<span *ngIf="award.points > 1">s</span></ion-note>
       </ion-item-divider>
       <ion-radio-group [value]="currentUser.picks[award.id]?.id" (ionChange)="nomineePicked($event, award)">
-        <ion-item *ngFor="let nominee of award.nominees">
+        <ion-item *ngFor="let nominee of award.nominees" [color]="currentUser.picks[award.id]?.id === nominee.id ? 'light': ''">
           <ion-label class="ion-text-wrap">
             <h2 *ngIf="nominee.nominee">{{nominee.nominee}}</h2>
             <span *ngIf="!nominee.nominee">{{nominee.film}}</span>
