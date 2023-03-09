@@ -133,18 +133,6 @@ export class PoolComponent implements OnInit {
   compileStats() {
     this.awardsSub = this.afs.collection<AwardCategory>('awards', ref => ref.orderBy('sequence'))
       .valueChanges().subscribe(awards => {
-        this.awardPicks = _.map(awards, (award: any) => {
-          award.nominees = _.chain(award.nominees)
-            .map((nominee: any) => {
-              nominee.users = _.filter(this.poolUsers, user => user.picks[award.id] && user.picks[award.id].id == nominee.id);
-              return nominee;
-            })
-            .filter(nominee => nominee.users.length || nominee.id === award.winner)
-            .value();
-
-          return award;
-        });
-        console.log(this.awardPicks)
 
         // this.darkHorseWinner = this._getDarkHorse(awards);
         // this._getFanboys();

@@ -14,7 +14,7 @@
               <img alt="Silhouette of a person's head" [src]="user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"  />
             </ion-avatar>
             <ion-label style="display: flex; align-items: center; gap: 10px;">
-              <ion-icon *ngIf="appService.itsOver && user.points === poolUsers[0].points" color="warning" name="trophy"></ion-icon>
+              <ion-icon *ngIf="appService.isAfterCeremonyStart && appService.itsOver && user.points === poolUsers[0].points" color="warning" name="trophy"></ion-icon>
               {{user.displayName}}
               <ion-icon *ngIf="user.uid == pool.creator" name="star"></ion-icon>
             </ion-label>
@@ -61,24 +61,6 @@
         <ion-list-header>
           <ion-label>User Picks by Nominee</ion-label>
         </ion-list-header>
-        <ion-item-group *ngFor="let award of awardPicks">
-          <ion-item-divider>
-            <ion-label>{{award.award}}</ion-label>
-          </ion-item-divider>
-          <ion-item *ngFor="let nominee of award.nominees">
-            <ion-label class="ion-text-wrap" style="min-width: 150px;">
-              <h2 *ngIf="nominee.nominee">{{nominee.nominee}}</h2>
-              <span *ngIf="!nominee.nominee">{{nominee.film}}</span>
-              <p *ngIf="nominee.nominee">{{nominee.film}}</p>
-            </ion-label>
-            <ion-icon *ngIf="nominee.id == award.winner" color="warning" slot="end" name="trophy"></ion-icon>
-            <div>
-              <ion-avatar [title]="user.displayName" *ngFor="let user of nominee.users" style="padding-right: 5px; display: inline-block;">
-                <img alt="Silhouette of a person's head" [src]="user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"  />
-              </ion-avatar>
-            </div>
-          </ion-item>
-        </ion-item-group>
       </ion-list>
     </ion-content>
   </ng-template>

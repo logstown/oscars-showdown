@@ -21,24 +21,43 @@
 
   <app-welcome *ngIf="!currentUser"></app-welcome>
   
-  <ion-list *ngIf="currentUser" style="margin-top: 20px;">
-    <ion-item-group *ngFor="let award of awards$ | async; trackBy:identify" style="margin-bottom: 50px;">
-      <ion-item-divider [color]="getAwardColor(award)" mode="ios" style="text-transform: uppercase;">
-        <ion-label>{{award.award}}</ion-label>
-        <ion-note color="dark" slot="end">{{award.points}} point<span *ngIf="award.points > 1">s</span></ion-note>
-      </ion-item-divider>
-      <ion-radio-group [value]="currentUser.picks[award.id]?.id" (ionChange)="nomineePicked($event, award)">
-        <ion-item *ngFor="let nominee of award.nominees" [color]="currentUser.picks[award.id]?.id === nominee.id ? 'light': ''">
-          <ion-label class="ion-text-wrap">
-            <h2 *ngIf="nominee.nominee">{{nominee.nominee}}</h2>
-            <span *ngIf="!nominee.nominee">{{nominee.film}}</span>
-            <p *ngIf="nominee.nominee">{{nominee.film}}</p>
-          </ion-label>
-          <ion-button *ngIf="appService.isAfterCeremonyStart && currentUser.uid == 'eKIs8Uh8c4hR6B9ZSPg6cRNh4h82'" (click)="setWinner(award, nominee)">winner</ion-button>
-          <ion-icon *ngIf="appService.isAfterCeremonyStart && nominee.id == award.winner" color="warning" name="trophy"></ion-icon>
-          <ion-radio slot="end" [value]="nominee.id" [disabled]="appService.isAfterCeremonyStart"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-item-group>
-  </ion-list>
+  <div *ngIf="currentUser">
+    <ion-list *ngIf="appService.isAfterCeremonyStart">
+      <ion-item>
+        <ion-select placeholder="Select Pool" [(ngModel)]="chosenPool" (ngModelChange)="poolChosen()">
+          <ion-select-option *ngFor="let pool of userPools" [value]="pool">{{pool.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-list style="margin-top: 20px;">
+      <ion-item-group *ngFor="let award of awards$ | async; trackBy:identify" style="margin-bottom: 50px;">
+        <ion-item-divider [color]="getAwardColor(award)" mode="ios" style="text-transform: uppercase;">
+          <ion-label>{{award.award}}</ion-label>
+          <ion-note color="dark" slot="end">{{award.points}} point<span *ngIf="award.points > 1">s</span></ion-note>
+        </ion-item-divider>
+        <ion-radio-group [value]="currentUser.picks[award.id]?.id" (ionChange)="nomineePicked($event, award)">
+          <ion-item *ngFor="let nominee of award.nominees" [color]="currentUser.picks[award.id]?.id === nominee.id ? 'light': ''">
+            <ion-label class="ion-text-wrap" style="opacity: 1;">
+              <ion-button *ngIf="appService.isAfterCeremonyStart && !appService.itsOver && currentUser.uid == 'eKIs8Uh8c4hR6B9ZSPg6cRNh4h82'" 
+                (click)="setWinner(award, nominee)">
+                <ion-icon name="trophy"></ion-icon>
+              </ion-button>
+              <h2 *ngIf="nominee.nominee">{{nominee.nominee}}</h2>
+              <span *ngIf="!nominee.nominee">{{nominee.film}}</span>
+              <p *ngIf="nominee.nominee">{{nominee.film}}</p>
+            </ion-label>
+            <ion-icon *ngIf="appService.isAfterCeremonyStart && nominee.id == award.winner" color="warning" name="trophy"></ion-icon>
+            <ion-label class="ion-text-wrap" style="opacity: 1;">
+              <ng-container *ngFor="let user of poolUsers">
+                <ion-avatar [title]="user.displayName" *ngIf="user.picks[award.id]?.id == nominee.id">
+                  <img alt="Silhouette of a person's head" [src]="user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"  />
+                </ion-avatar>
+              </ng-container>
+            </ion-label>
+            <ion-radio slot="end" [value]="nominee.id" [disabled]="appService.isAfterCeremonyStart"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-item-group>
+    </ion-list>
+  </div>
 </ion-content>
