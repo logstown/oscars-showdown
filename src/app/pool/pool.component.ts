@@ -53,7 +53,8 @@ export class PoolComponent implements OnInit {
 
         const toast = await this.toastController.create({
           message: `Congratulations ${winnersString}! Way to know movies!`,
-          duration: 3000,
+          color: 'primary',
+          duration: 5000,
           position: 'top'
         });
     
@@ -112,6 +113,7 @@ export class PoolComponent implements OnInit {
             const toast = await this.toastController.create({
               message: 'Link Copied',
               duration: 3000,
+              color: 'primary',
               position: 'top'
             });
         

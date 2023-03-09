@@ -42,7 +42,7 @@ export class AppComponent {
       this.appService.winners$.subscribe(async winners => {
         const latestAward: AwardCategory = _.maxBy(winners, winner => winner.winnerStamp.toMillis());
       
-        if(latestAward) {
+        if(latestAward && !this.appService.itsOver) {
           const winningNominee = _.find(latestAward.nominees, {id: latestAward.winner});
           const winnerString = winningNominee.nominee ? winningNominee.nominee : winningNominee.film;
   
@@ -50,6 +50,7 @@ export class AppComponent {
             message: `${winnerString} has won for ${latestAward.award}`,
             position: 'top',
             icon: 'trophy',
+            color: 'primary',
             buttons: [
               {
                 text: 'Ok',

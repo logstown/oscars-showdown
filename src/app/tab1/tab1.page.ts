@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { combineLatest, Observable, take } from 'rxjs';
 import { AppService } from '../app.service';
 import { OscarUser, Pool } from '../models';
