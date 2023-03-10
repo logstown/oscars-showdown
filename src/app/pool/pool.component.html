@@ -8,7 +8,7 @@
     <ion-list *ngIf="currentUser">
       <ng-container *ngFor="let user of poolUsers">
         <ion-item-sliding [disabled]="appService.isAfterCeremonyStart || pool.creator !== currentUser.uid || user.uid === currentUser.uid ">
-          <ion-item [routerLink]="user.uid === currentUser.uid ? ['/ballot'] : null">
+          <ion-item [routerLink]="user.uid === currentUser.uid ? ['/ballot'] : null" detail="false">
             <app-picks-status *ngIf="pool.creator === currentUser.uid && appService.isBeforeCeremony" slot="start" [user]="user"></app-picks-status>
             <ion-avatar slot="start">
               <img alt="Silhouette of a person's head" [src]="user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"  />
@@ -39,8 +39,8 @@
           Leave Pool
       </ion-button>
       <ion-button *ngIf="appService.isAfterCeremonyStart" [id]="'open-modal'+pool.id" fill="outline">
-          <ion-icon name="stats-chart" slot="start"></ion-icon>
-          Stats
+          <ion-icon name="star" slot="start"></ion-icon>
+          Superlatives
       </ion-button>
     </div>
   </ion-card-content>
@@ -63,7 +63,7 @@
             <h1 style="display: flex; align-items: center; gap: 10px;">
               <ion-icon color="warning" name="trophy"></ion-icon>Knows Acting Award
             </h1>
-            <p>Correctly predicted the most acting categories</p>
+            <p class="ion-text-wrap">Correctly predicted the most acting categories</p>
           </ion-label>
         </ion-item>
         <ion-item *ngFor="let winner of knowsActingWinner">
@@ -80,7 +80,14 @@
             <h1 style="display: flex; align-items: center; gap: 10px;">
               <ion-icon color="warning" name="trophy"></ion-icon>Dark Horse Award
             </h1>
-            <p>Correct predictions went against the grain of the rest of the pool</p>
+            <p class="ion-text-wrap" style="display: flex; align-items: center;">
+              Correct predictions went against the grain of the rest of the pool <ion-button id="dark-horse-info" fill="clear" size="small" shape="round"><ion-icon slot="icon-only" name="information-circle-outline"></ion-icon></ion-button> 
+            </p>
+            <ion-popover trigger="dark-horse-info" triggerAction="click">
+              <ng-template>
+                <ion-content class="ion-padding">For each award, one point was divided amongst the players that got it correct. So if four players got it, they'd each receive 0.25 points, but if only one player got it, she would receive the full point. Highest score at the end is the winner.</ion-content>
+              </ng-template>
+            </ion-popover>
           </ion-label>
         </ion-item>
         <ion-item *ngFor="let winner of darkHorseWinner">
