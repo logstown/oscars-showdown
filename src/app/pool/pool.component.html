@@ -58,9 +58,37 @@
     </ion-header>
     <ion-content>
       <ion-list style="max-width: 700px; margin: auto;">
-        <ion-list-header>
-          <ion-label>User Picks by Nominee</ion-label>
-        </ion-list-header>
+        <ion-item>
+          <ion-label>
+            <h1 style="display: flex; align-items: center; gap: 10px;">
+              <ion-icon color="warning" name="trophy"></ion-icon>Knows Acting Award
+            </h1>
+            <p>Correctly predicted the most acting categories</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngFor="let winner of knowsActingWinner">
+          <ion-avatar slot="start">
+            <img [src]="winner.user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"/>
+          </ion-avatar>
+          <ion-label>{{winner.user.displayName}}</ion-label>
+          <ion-label slot="end">{{winner.points}}/4 correct!</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list style="max-width: 700px; margin: auto; margin-top: 20px;">
+        <ion-item>
+          <ion-label>
+            <h1 style="display: flex; align-items: center; gap: 10px;">
+              <ion-icon color="warning" name="trophy"></ion-icon>Dark Horse Award
+            </h1>
+            <p>Correct predictions went against the grain of the rest of the pool</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngFor="let winner of darkHorseWinner">
+          <ion-avatar slot="start">
+            <img [src]="winner.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"/>
+          </ion-avatar>
+          <ion-label>{{winner.displayName}}</ion-label>
+        </ion-item>
       </ion-list>
     </ion-content>
   </ng-template>

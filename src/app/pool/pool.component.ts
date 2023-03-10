@@ -2,7 +2,7 @@ import { Component, Input, isDevMode, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController, IonModal, ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
-import { first, Observable, Subscription } from 'rxjs';
+import { first, Subscription } from 'rxjs';
 import { AppService } from '../app.service';
 import { AwardCategory, OscarUser, Pool } from '../models';
 
@@ -20,6 +20,8 @@ export class PoolComponent implements OnInit {
   currentUser: OscarUser;
   awardPicks: any[];
   awardsSub: Subscription;
+  darkHorseWinner: OscarUser[];
+  knowsActingWinner: {user: OscarUser, points: number}[];
   
   constructor(private afs: AngularFirestore, 
     public appService: AppService, 
@@ -133,9 +135,8 @@ export class PoolComponent implements OnInit {
   compileStats() {
     this.awardsSub = this.afs.collection<AwardCategory>('awards', ref => ref.orderBy('sequence'))
       .valueChanges().subscribe(awards => {
-
-        // this.darkHorseWinner = this._getDarkHorse(awards);
-        // this._getFanboys();
+        this.darkHorseWinner = this._getDarkHorse(awards);
+        this.knowsActingWinner = this._getKnowsActing(awards);
       });
   }
 
@@ -146,6 +147,50 @@ export class PoolComponent implements OnInit {
   unsub() {
     console.log('unsub')
     this.awardsSub.unsubscribe();
+  }
+
+  private _getDarkHorse(awards: AwardCategory[]): OscarUser[] {
+    const userPoints = {};
+    _.forEach(awards, (award: AwardCategory) => {
+      const correctUsers = _.filter(this.poolUsers, (user: OscarUser) => user.picks[award.id]?.id === award.winner);
+
+      _.forEach(correctUsers, user =>{
+        if(!userPoints[user.uid]) {
+          userPoints[user.uid] = {
+            user: user,
+            points: 0
+          }
+        }
+
+        userPoints[user.uid].points += (1/correctUsers.length)
+      })
+    });
+
+    const userPointsArr: {user: OscarUser; points: number}[] = _.toArray(userPoints);
+    const highest = _.maxBy(userPointsArr, 'points');
+
+    return _.chain(userPointsArr)
+      .filter({points: highest.points})
+      .map('user')
+      .value()
+  }
+
+  private _getKnowsActing(awards: AwardCategory[]): {user: OscarUser, points: number}[] {
+    const actingAwards = _.filter(awards, x => _.startsWith(x.award.toLowerCase(), 'act'));
+
+    const userPoints = _.map(this.poolUsers, user => {
+      const points = _.reduce(actingAwards, (total, award) => {
+        if(user.picks[award.id]?.id === award.winner) {
+          total++;
+        } 
+        return total;
+      }, 0);
+
+      return {user, points}
+    });
+
+    const highest = _.maxBy(userPoints, 'points');
+    return _.filter(userPoints, {points: highest.points})
   }
 
   private async _compileScores(winners: AwardCategory[]) {
