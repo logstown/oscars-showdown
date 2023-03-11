@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { combineLatest, Observable, take } from 'rxjs';
 import { AppService } from '../app.service';
-import { OscarUser, Pool } from '../models';
+import { AwardCategory, OscarUser, Pool } from '../models';
 import { serverTimestamp } from "firebase/firestore";
 import { LoginModalComponent } from '../login-modal/login-modal.component';
 import * as _ from 'lodash';
@@ -718,6 +718,18 @@ export class Tab1Page implements OnInit {
     });
 
     _.forEach(awards2, (award: any) => this.afs.collection('awards').doc(award.id).set(award))
+}
+
+doADeal2() {
+    this.afs.collection<AwardCategory>('awards', ref => ref.orderBy('sequence')).valueChanges()
+    .subscribe((awards: AwardCategory[]) => {
+            _.forEach(awards, award => {
+                award.winner = '';
+                award.winnerStamp = null;
+
+                this.afs.collection('awards').doc(award.id).update(award);
+            })
+        })
 }
 
   private _initPools() {

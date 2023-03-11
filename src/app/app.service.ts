@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 // import { AngularFirestore } from '@angular/fire/firestore';
 import { AwardCategory, OscarUser } from './models';
-import { ReplaySubject, Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import * as _ from 'lodash';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
