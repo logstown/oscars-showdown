@@ -61,6 +61,23 @@
         <ion-item>
           <ion-label>
             <h1 style="display: flex; align-items: center; gap: 10px;">
+              <ion-icon color="warning" name="trophy"></ion-icon>Cinephile Award
+            </h1>
+            <p class="ion-text-wrap">Correctly predicted the most short/feature film categories</p>
+          </ion-label>
+        </ion-item>
+        <ion-item *ngFor="let winner of cinephileWinner">
+          <ion-avatar slot="start">
+            <img [src]="winner.user.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"/>
+          </ion-avatar>
+          <ion-label>{{winner.user.displayName}}</ion-label>
+          <ion-label slot="end">{{winner.points}}/6 correct!</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list style="max-width: 700px; margin: auto; margin-top: 20px;">
+        <ion-item>
+          <ion-label>
+            <h1 style="display: flex; align-items: center; gap: 10px;">
               <ion-icon color="warning" name="trophy"></ion-icon>Knows Acting Award
             </h1>
             <p class="ion-text-wrap">Correctly predicted the most acting categories</p>

@@ -20,7 +20,7 @@
   </ion-header>
 
   <ion-text *ngIf="appService.isBeforeCeremony" color="primary" style="text-align: center;">
-    <h2>Ceremony starts {{appService.timeUntilCeremony}}</h2>
+    <h2>Ceremony starts <ion-text color="secondary">{{appService.timeUntilCeremony}}!</ion-text></h2>
   </ion-text>
 
   <app-welcome *ngIf="!currentUser"></app-welcome>

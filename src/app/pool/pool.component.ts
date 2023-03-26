@@ -22,6 +22,7 @@ export class PoolComponent implements OnInit {
   awardsSub: Subscription;
   darkHorseWinner: OscarUser[];
   knowsActingWinner: {user: OscarUser, points: number}[];
+  cinephileWinner: {user: OscarUser, points: number}[];
   
   constructor(private afs: AngularFirestore, 
     public appService: AppService, 
@@ -137,6 +138,7 @@ export class PoolComponent implements OnInit {
       .valueChanges().subscribe(awards => {
         this.darkHorseWinner = this._getDarkHorse(awards);
         this.knowsActingWinner = this._getKnowsActing(awards);
+        this.cinephileWinner = this._getCinephile(awards)
       });
   }
 
@@ -169,8 +171,10 @@ export class PoolComponent implements OnInit {
     const userPointsArr: {user: OscarUser; points: number}[] = _.toArray(userPoints);
     const highest = _.maxBy(userPointsArr, 'points');
 
+    console.log('darkhorse', userPointsArr)
+
     return _.chain(userPointsArr)
-      .filter({points: highest.points})
+      .filter({points: highest?.points})
       .map('user')
       .value()
   }
@@ -188,6 +192,28 @@ export class PoolComponent implements OnInit {
 
       return {user, points}
     });
+
+    console.log('acting', userPoints)
+
+    const highest = _.maxBy(userPoints, 'points');
+    return _.filter(userPoints, {points: highest.points})
+  }
+
+  private _getCinephile(awards: AwardCategory[]): {user: OscarUser, points: number}[] {
+    const filmAwards = _.filter(awards, x => _.endsWith(x.award.toLowerCase(), 'film'));
+
+    const userPoints = _.map(this.poolUsers, user => {
+      const points = _.reduce(filmAwards, (total, award) => {
+        if(user.picks[award.id]?.id === award.winner) {
+          total++;
+        } 
+        return total;
+      }, 0);
+
+      return {user, points}
+    });
+
+    console.log('cini', userPoints)
 
     const highest = _.maxBy(userPoints, 'points');
     return _.filter(userPoints, {points: highest.points})

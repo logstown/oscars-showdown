@@ -1,14 +1,14 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-item slot="start" lines="none"  *ngIf="currentUser">
+  <ion-toolbar *ngIf="currentUser">
+    <ion-item slot="start" lines="none">
       <ion-avatar>
         <img alt="Silhouette of a person's head" [src]="currentUser.photoURL || 'https://ionicframework.com/docs/img/demos/avatar.svg'"  />
       </ion-avatar>
     </ion-item>
     <ion-title>
-      Ballot
+      Ballot <app-picks-status [user]="currentUser"></app-picks-status>
     </ion-title>
-    <ion-button *ngIf="currentUser" slot="end" (click)="logout()" fill="clear">Logout</ion-button>
+    <ion-button slot="end" (click)="logout()" fill="clear">Logout</ion-button>
   </ion-toolbar>
 </ion-header>
 
