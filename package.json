@@ -31,6 +31,7 @@
     "firebaseui-angular": "^6.1.3",
     "ionicons": "^6.0.3",
     "lodash": "^4.17.21",
+    "moment": "^2.30.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

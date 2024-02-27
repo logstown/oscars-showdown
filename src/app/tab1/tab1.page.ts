@@ -108,306 +108,384 @@ export class Tab1Page implements OnInit {
   doADeal() {
     let awards2 = [
         {
-            "award": "Best Picture",
+            "award": "Best picture",
             "nominees": [
                 {
-                    "film": "All Quiet on the Western Front",
+                    "film": "American Fiction",
                     "nominee": ""
                 },
                 {
-                    "film": "Avatar: The Way of Water",
+                    "film": "Anatomy of a Fall",
                     "nominee": ""
                 },
                 {
-                    "film": "The Banshees of Inisherin",
+                    "film": "Barbie",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "The Holdovers",
                     "nominee": ""
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
+                    "film": "Killers of the Flower Moon",
                     "nominee": ""
                 },
                 {
-                    "film": "The Fabelmans",
+                    "film": "Maestro",
                     "nominee": ""
                 },
                 {
-                    "film": "T\u00e1r",
+                    "film": "Oppenheimer",
                     "nominee": ""
                 },
                 {
-                    "film": "Top Gun: Maverick",
+                    "film": "Past Lives",
                     "nominee": ""
                 },
                 {
-                    "film": "Triangle of Sadness",
+                    "film": "Poor Things",
                     "nominee": ""
                 },
                 {
-                    "film": "Women Talking",
+                    "film": "The Zone of Interest",
                     "nominee": ""
                 }
             ],
             "points": 5
         },
         {
-            "award": "Actor in a Leading Role",
+            "award": "Best actor",
             "nominees": [
                 {
-                    "film": "Elvis",
-                    "nominee": "Austin Butler"
+                    "film": "Maestro",
+                    "nominee": "Bradley Cooper"
                 },
                 {
-                    "film": "The Banshees of Inisherin",
-                    "nominee": "Colin Farrell"
+                    "film": "Rustin",
+                    "nominee": "Colman Domingo"
                 },
                 {
-                    "film": "The Whale",
-                    "nominee": "Brendan Fraser"
+                    "film": "The Holdovers",
+                    "nominee": "Paul Giamatti"
                 },
                 {
-                    "film": "Aftersun",
-                    "nominee": "Paul Mescal"
+                    "film": "Oppenheimer",
+                    "nominee": "Cillian Murphy"
                 },
                 {
-                    "film": "Living (Sony Pictures Classics)",
-                    "nominee": "Bill Nighy"
+                    "film": "American Fiction",
+                    "nominee": "Jeffrey Wright"
                 }
             ],
             "points": 3
         },
         {
-            "award": "Actress in a Leading Role",
+            "award": "Best actress",
             "nominees": [
                 {
-                    "film": "T\u00e1r",
-                    "nominee": "Cate Blanchett"
+                    "film": "Nyad",
+                    "nominee": "Annette Bening"
                 },
                 {
-                    "film": "Blonde",
-                    "nominee": "Ana de Armas"
+                    "film": "Killers of the Flower Moon",
+                    "nominee": "Lily Gladstone"
                 },
                 {
-                    "film": "To Leslie (Momentum Pictures)",
-                    "nominee": "Andrea Riseborough"
+                    "film": "Anatomy of a Fall",
+                    "nominee": "Sandra H\u00fcller"
                 },
                 {
-                    "film": "The Fabelmans",
-                    "nominee": "Michelle Williams"
+                    "film": "Maestro",
+                    "nominee": "Carey Mulligan"
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
-                    "nominee": "Michelle Yeoh"
+                    "film": "Poor Things",
+                    "nominee": "Emma Stone"
                 }
             ],
             "points": 3
         },
         {
-            "award": "Directing",
+            "award": "Best supporting actor",
             "nominees": [
                 {
-                    "film": "The Banshees of Inisherin",
-                    "nominee": "Martin McDonagh"
+                    "film": "American Fiction",
+                    "nominee": "Sterling K. Brown"
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
-                    "nominee": "Daniel Kwan & Daniel Scheinert"
+                    "film": "Killers of the Flower Moon",
+                    "nominee": "Robert De Niro"
                 },
                 {
-                    "film": "The Fabelmans",
-                    "nominee": "Steven Spielberg"
+                    "film": "Oppenheimer",
+                    "nominee": "Robert Downey Jr."
                 },
                 {
-                    "film": "T\u00e1r",
-                    "nominee": "Todd Field"
+                    "film": "Barbie",
+                    "nominee": "Ryan Gosling"
                 },
                 {
-                    "film": "Triangle of Sadness",
-                    "nominee": "Ruben \u00d6stlund"
+                    "film": "Poor Things",
+                    "nominee": "Mark Ruffalo"
                 }
             ],
             "points": 3
         },
         {
-            "award": "Actor in a Supporting Role",
+            "award": "Best supporting actress",
             "nominees": [
                 {
-                    "film": "The Banshees of Inisherin",
-                    "nominee": "Brendan Gleeson"
+                    "film": "Oppenheimer",
+                    "nominee": "Emily Blunt"
                 },
                 {
-                    "film": "Causeway (Apple)",
-                    "nominee": "Brian Tyree Henry"
+                    "film": "The Color Purple",
+                    "nominee": "Danielle Brooks"
                 },
                 {
-                    "film": "The Fabelmans",
-                    "nominee": "Judd Hirsch"
+                    "film": "Barbie",
+                    "nominee": "America Ferrera"
                 },
                 {
-                    "film": "The Banshees of Inisherin",
-                    "nominee": "Barry Keoghan"
+                    "film": "Nyad",
+                    "nominee": "Jodie Foster"
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
-                    "nominee": "Ke Huy Quan"
+                    "film": "The Holdovers",
+                    "nominee": "Da'Vine Joy Randolph"
                 }
             ],
             "points": 3
         },
         {
-            "award": "Actress in a Supporting Role",
+            "award": "Best director",
             "nominees": [
                 {
-                    "film": "Black Panther: Wakanda Forever",
-                    "nominee": "Angela Bassett"
+                    "film": "The Zone of Interest",
+                    "nominee": "Jonathan Glazer"
                 },
                 {
-                    "film": "The Whale",
-                    "nominee": "Hong Chau"
+                    "film": "Poor Things",
+                    "nominee": "Yorgos Lanthimos"
                 },
                 {
-                    "film": "The Banshees of Inisherin",
-                    "nominee": "Kerry Condon"
+                    "film": "Oppenheimer",
+                    "nominee": "Christopher Nolan"
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
-                    "nominee": "Jamie Lee Curtis"
+                    "film": "Killers of the Flower Moon",
+                    "nominee": "Martin Scorsese"
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
-                    "nominee": "Stephanie Hsu"
+                    "film": "Anatomy of a Fall",
+                    "nominee": "Justine Triet"
                 }
             ],
             "points": 3
         },
         {
-            "award": "Animated Feature Film",
+            "award": "International feature film",
             "nominees": [
                 {
-                    "film": "Guillermo del Toro\u2019s Pinocchio",
+                    "film": "Io Capitano (Italy)",
                     "nominee": ""
                 },
                 {
-                    "film": "Marcel the Shell with Shoes On",
+                    "film": "Perfect Days (Japan)",
                     "nominee": ""
                 },
                 {
-                    "film": "Puss in Boots: The Last Wish",
+                    "film": "Society of the Snow (Spain)",
                     "nominee": ""
                 },
                 {
-                    "film": "The Sea Beast",
+                    "film": "The Teachers' Lounge (Germany)",
                     "nominee": ""
                 },
                 {
-                    "film": "Turning Red",
+                    "film": "The Zone of Interest (United Kingdom)",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Documentary Feature Film",
+            "award": "Animated feature film",
             "nominees": [
                 {
-                    "film": "All That Breathes",
+                    "film": "The Boy and the Heron",
                     "nominee": ""
                 },
                 {
-                    "film": "All the Beauty and the Bloodshed",
+                    "film": "Elemental",
                     "nominee": ""
                 },
                 {
-                    "film": "Fire of Love",
+                    "film": "Nimona",
                     "nominee": ""
                 },
                 {
-                    "film": "A House Made of Splinters",
+                    "film": "Robot Dreams",
                     "nominee": ""
                 },
                 {
-                    "film": "Navalny",
+                    "film": "Spider-Man: Across the Spider-Verse",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "International Feature Film",
+            "award": "Adapted screenplay",
             "nominees": [
                 {
-                    "film": "All Quiet on the Western Front (Germany)",
+                    "film": "American Fiction",
                     "nominee": ""
                 },
                 {
-                    "film": "Argentina, 1985 (Argentina)",
+                    "film": "Barbie",
                     "nominee": ""
                 },
                 {
-                    "film": "Close (Belgium)",
+                    "film": "Oppenheimer",
                     "nominee": ""
                 },
                 {
-                    "film": "EO (Poland)",
+                    "film": "Poor Things",
                     "nominee": ""
                 },
                 {
-                    "film": "The Quiet Girl (Ireland)",
+                    "film": "The Zone of Interest",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Writing (Adapted Screenplay)",
+            "award": "Original screenplay",
             "nominees": [
                 {
-                    "film": "All Quiet on the Western Front",
+                    "film": "Anatomy of a Fall",
                     "nominee": ""
                 },
                 {
-                    "film": "Glass Onion: A Knives Out Mystery",
+                    "film": "The Holdovers",
                     "nominee": ""
                 },
                 {
-                    "film": "Living",
+                    "film": "Maestro",
                     "nominee": ""
                 },
                 {
-                    "film": "Top Gun: Maverick",
+                    "film": "May December",
                     "nominee": ""
                 },
                 {
-                    "film": "Women Talking",
+                    "film": "Past Lives",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Writing (Original Screenplay)",
+            "award": "Visual effects",
             "nominees": [
                 {
-                    "film": "The Banshees of Inisherin",
+                    "film": "The Creator",
                     "nominee": ""
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
+                    "film": "Godzilla Minus One",
                     "nominee": ""
                 },
                 {
-                    "film": "The Fabelmans",
+                    "film": "Guardians of the Galaxy Vol. 3",
                     "nominee": ""
                 },
                 {
-                    "film": "T\u00e1r",
+                    "film": "Mission: Impossible - Dead Reckoning Part One",
                     "nominee": ""
                 },
                 {
-                    "film": "Triangle of Sadness",
+                    "film": "Napoleon",
+                    "nominee": ""
+                }
+            ],
+            "points": 1
+        },
+        {
+            "award": "Original score",
+            "nominees": [
+                {
+                    "film": "American Fiction",
+                    "nominee": ""
+                },
+                {
+                    "film": "Indiana Jones and the Dial of Destiny",
+                    "nominee": ""
+                },
+                {
+                    "film": "Killers of the Flower Moon",
+                    "nominee": ""
+                },
+                {
+                    "film": "Oppenheimer",
+                    "nominee": ""
+                },
+                {
+                    "film": "Poor Things",
+                    "nominee": ""
+                }
+            ],
+            "points": 1
+        },
+        {
+            "award": "Original song",
+            "nominees": [
+                {
+                    "film": "American Symphony",
+                    "nominee": "It Never Went Away"
+                },
+                {
+                    "film": "Barbie",
+                    "nominee": "I'm Just Ken"
+                },
+                {
+                    "film": "Barbie",
+                    "nominee": "What Was I Made For?"
+                },
+                {
+                    "film": "Flamin' Hot",
+                    "nominee": "The Fire Inside"
+                },
+                {
+                    "film": "Killers of the Flower Moon",
+                    "nominee": "Wahzhazhe (A Song For My People)"
+                }
+            ],
+            "points": 1
+        },
+        {
+            "award": "Documentary feature film",
+            "nominees": [
+                {
+                    "film": "20 Days in Mariupol",
+                    "nominee": ""
+                },
+                {
+                    "film": "Bobi Wine: The People's President",
+                    "nominee": ""
+                },
+                {
+                    "film": "The Eternal Memory",
+                    "nominee": ""
+                },
+                {
+                    "film": "Four Daughters",
+                    "nominee": ""
+                },
+                {
+                    "film": "To Kill a Tiger",
                     "nominee": ""
                 }
             ],
@@ -417,257 +495,153 @@ export class Tab1Page implements OnInit {
             "award": "Cinematography",
             "nominees": [
                 {
-                    "film": "All Quiet on the Western Front",
+                    "film": "El Conde",
                     "nominee": ""
                 },
                 {
-                    "film": "Bardo",
+                    "film": "Killers of the Flower Moon",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "Maestro",
                     "nominee": ""
                 },
                 {
-                    "film": "Empire of Light",
+                    "film": "Oppenheimer",
                     "nominee": ""
                 },
                 {
-                    "film": "T\u00e1r",
+                    "film": "Poor Things",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Film Editing",
+            "award": "Costume design",
             "nominees": [
                 {
-                    "film": "The Banshees of Inisherin",
+                    "film": "Barbie",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "Killers of the Flower Moon",
                     "nominee": ""
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
+                    "film": "Napoleon",
                     "nominee": ""
                 },
                 {
-                    "film": "T\u00e1r",
+                    "film": "Oppenheimer",
                     "nominee": ""
                 },
                 {
-                    "film": "Top Gun: Maverick",
+                    "film": "Poor Things",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Music (Original Score)",
+            "award": "Animated short film",
             "nominees": [
                 {
-                    "film": "All Quiet on the Western Front",
+                    "film": "Letter to a Pig",
                     "nominee": ""
                 },
                 {
-                    "film": "Babylon",
+                    "film": "Ninety-Five Senses",
                     "nominee": ""
                 },
                 {
-                    "film": "The Banshees of Inisherin",
+                    "film": "Our Uniform",
                     "nominee": ""
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
+                    "film": "Pachyderme",
                     "nominee": ""
                 },
                 {
-                    "film": "The Fabelmans",
+                    "film": "War Is Over! Inspired by the Music of John & Yoko",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Music (Original Song)",
+            "award": "Live action short film",
             "nominees": [
                 {
-                    "film": "Tell It like a Woman",
-                    "nominee": "\u201cApplause\u201d"
-                },
-                {
-                    "film": "Top Gun: Maverick",
-                    "nominee": "\u201cHold My Hand\u201d"
-                },
-                {
-                    "film": "Black Panther: Wakanda Forever",
-                    "nominee": "\u201cLift Me Up\u201d"
-                },
-                {
-                    "film": "RRR",
-                    "nominee": "\u201cNaatu Naatu\u201d"
-                },
-                {
-                    "film": "Everything Everywhere All at Once",
-                    "nominee": "\u201cThis Is A Life\u201d"
-                }
-            ],
-            "points": 1
-        },
-        {
-            "award": "Production Design",
-            "nominees": [
-                {
-                    "film": "All Quiet on the Western Front",
+                    "film": "The After",
                     "nominee": ""
                 },
                 {
-                    "film": "Avatar: The Way of Water",
+                    "film": "Invincible",
                     "nominee": ""
                 },
                 {
-                    "film": "Babylon",
+                    "film": "Knight of Fortune",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "Red, White and Blue",
                     "nominee": ""
                 },
                 {
-                    "film": "The Fabelmans",
+                    "film": "The Wonderful Story of Henry Sugar",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Costume Design",
+            "award": "Documentary short film",
             "nominees": [
                 {
-                    "film": "Babylon",
+                    "film": "The ABCs of Book Banning",
                     "nominee": ""
                 },
                 {
-                    "film": "Black Panther: Wakanda Forever",
+                    "film": "The Barber of Little Rock",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "Island in Between",
                     "nominee": ""
                 },
                 {
-                    "film": "Everything Everywhere All at Once",
+                    "film": "The Last Repair Shop",
                     "nominee": ""
                 },
                 {
-                    "film": "Mrs. Harris Goes to Paris",
+                    "film": "N\u01cei Nai & W\u00e0i P\u00f3",
                     "nominee": ""
                 }
             ],
             "points": 1
         },
         {
-            "award": "Makeup and Hairstyling",
+            "award": "Film editing",
             "nominees": [
                 {
-                    "film": "All Quiet",
+                    "film": "Anatomy of a Fall",
                     "nominee": ""
                 },
                 {
-                    "film": "The Batman",
+                    "film": "The Holdovers",
                     "nominee": ""
                 },
                 {
-                    "film": "Black Panther",
+                    "film": "Killers of the Flower Moon",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "Oppenheimer",
                     "nominee": ""
                 },
                 {
-                    "film": "The Whale",
-                    "nominee": ""
-                }
-            ],
-            "points": 1
-        },
-        {
-            "award": "Live Action Short Film",
-            "nominees": [
-                {
-                    "film": "An Irish Goodbye",
-                    "nominee": ""
-                },
-                {
-                    "film": "Ivalu",
-                    "nominee": ""
-                },
-                {
-                    "film": "Le Pupille",
-                    "nominee": ""
-                },
-                {
-                    "film": "Night Ride",
-                    "nominee": ""
-                },
-                {
-                    "film": "The Red Suitcase",
-                    "nominee": ""
-                }
-            ],
-            "points": 1
-        },
-        {
-            "award": "Documentary Short Film",
-            "nominees": [
-                {
-                    "film": "The Elephant Whisperers",
-                    "nominee": ""
-                },
-                {
-                    "film": "Haulout",
-                    "nominee": ""
-                },
-                {
-                    "film": "How Do You Measure a Year",
-                    "nominee": ""
-                },
-                {
-                    "film": "The Martha Mitchell Effect",
-                    "nominee": ""
-                },
-                {
-                    "film": "Stranger at the Gate",
-                    "nominee": ""
-                }
-            ],
-            "points": 1
-        },
-        {
-            "award": "Animated Short Film",
-            "nominees": [
-                {
-                    "film": "The Boy, The Mole, The Fox and the Horse",
-                    "nominee": ""
-                },
-                {
-                    "film": "The Flying Sailor",
-                    "nominee": ""
-                },
-                {
-                    "film": "Ice Merchants",
-                    "nominee": ""
-                },
-                {
-                    "film": "My Year of Dicks",
-                    "nominee": ""
-                },
-                {
-                    "film": "An Ostrich Told Me the World is Fake and I Think I Believe It",
+                    "film": "Poor Things",
                     "nominee": ""
                 }
             ],
@@ -677,23 +651,49 @@ export class Tab1Page implements OnInit {
             "award": "Sound",
             "nominees": [
                 {
-                    "film": "All Quiet on the Western Front",
+                    "film": "The Creator",
                     "nominee": ""
                 },
                 {
-                    "film": "Avatar: The Way of Water",
+                    "film": "Maestro",
                     "nominee": ""
                 },
                 {
-                    "film": "The Batman",
+                    "film": "Mission: Impossible - Dead Reckoning Part One",
                     "nominee": ""
                 },
                 {
-                    "film": "Elvis",
+                    "film": "Oppenheimer",
                     "nominee": ""
                 },
                 {
-                    "film": "Top Gun: Maverick",
+                    "film": "The Zone of Interest",
+                    "nominee": ""
+                }
+            ],
+            "points": 1
+        },
+        {
+            "award": "Production design",
+            "nominees": [
+                {
+                    "film": "Barbie",
+                    "nominee": ""
+                },
+                {
+                    "film": "Killers of the Flower Moon",
+                    "nominee": ""
+                },
+                {
+                    "film": "Napoleon",
+                    "nominee": ""
+                },
+                {
+                    "film": "Oppenheimer",
+                    "nominee": ""
+                },
+                {
+                    "film": "Poor Things",
                     "nominee": ""
                 }
             ],

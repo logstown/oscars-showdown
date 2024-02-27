@@ -11,7 +11,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class AppService {
     private _winnersSubject: ReplaySubject<AwardCategory[]> = new ReplaySubject();
     private _currentTime: moment.Moment =  moment();
-    private _ceremonyStart: moment.Moment = moment.utc({years: 2023, months: 2, days: 13, hours: 0});
+    private _ceremonyStart: moment.Moment = moment.utc({years: 2024, months: 2, days: 10, hours: 23});
     private _totalPossiblePoints: number = 0;
     private _awardsLength: number = 0;
     private _winnersLength: number = 0;
