@@ -89,7 +89,7 @@ export class PoolComponent implements OnInit {
   }
 
   async inviteOthers() {
-    const url = isDevMode() ? 'http://localhost:8100/tabs/tab1' : 'http://oscars.firebaseapp.com';
+    const url = isDevMode() ? 'http://localhost:8100/tabs/tab1' : 'http://oscars.web.app';
     const linkToCopy = `${url}?poolId=${this.pool.id}`;
 
     const alert = await this.alertController.create({
