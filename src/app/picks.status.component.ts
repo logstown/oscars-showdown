@@ -20,7 +20,7 @@ export class PicksStatusComponent {
   constructor(private appService: AppService) {}
 
   get isFinishedPicks(): boolean {    
-    return Object.keys(this.user.picks).length == this.appService.awardsLength;
+    return Object.keys(this.user.picks).length >= this.appService.awardsLength;
   }
 
   get isDayOf() {
